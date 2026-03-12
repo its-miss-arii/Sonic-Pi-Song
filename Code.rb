@@ -6,32 +6,12 @@ do_it = "C:/Users/arianna_rodriguez/Documents/Audacity/Sofia -Do it if we tried.
 in_love = "C:/Users/arianna_rodriguez/Documents/Audacity/Sofia - In love with you.wav"
 
 #FUNCTION
-define :layer_one_one do
-  8.times do 
+
+define :layer_one_two_three_four do |first_note, second_note, first_amp, second_amp|
+  8.times do
     use_synth :blade
-    play :f4, amp: 0.5
-    play :c5, amp: 1
-    sleep 0.75
-  end
-end
-define :layer_one_two do
-  8.times do
-    play :f4, amp: 0.2
-    play :b4, amp: 1
-    sleep 0.75
-  end
-end
-define :layer_one_three do
-  8.times do
-    play :e4, amp: 0.2
-    play :g4, amp: 1
-    sleep 0.75
-  end
-end
-define :layer_one_four do
-  8.times do
-    play :e4, amp: 0.2
-    play :a4, amp: 0.75
+    play first_note, amp: first_amp
+    play second_note, amp: second_amp
     sleep 0.75
   end
 end
@@ -49,15 +29,18 @@ define :guitar do
     sample :guit_em9, amp: 0.3
     sleep 8
   end
+  stop
 end
+
+
 
 #Music Coding Begins
 live_loop :layer_one do
   3.times do
-    layer_one_one
-    layer_one_two
-    layer_one_three
-    layer_one_four
+    layer_one_two_three_four :f4, :c5, 0.5, 1
+    layer_one_two_three_four :f4, :b4, 0.2, 1
+    layer_one_two_three_four :e4, :g4, 0.2, 1
+    layer_one_two_three_four :e4, :a4, 0.2, 0.75
   end
   stop
 end
@@ -66,7 +49,6 @@ sleep 8
 
 live_loop :layer_two do
   guitar
-  stop
 end
 
 sleep 16
