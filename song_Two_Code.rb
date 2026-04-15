@@ -1,9 +1,15 @@
 use_bpm  100
 # VARIABLES
-drum_amp=[0.7, 1, 3, 0.8, 2, 0.78, 4, 0.96, 1.5, 3]
+drum_amp=[0.7, 1, 3, 0.8, 2, 0.78, 4, 0.96, 1.5, 2]
 a = 0
 
-miss_me = "C:/Users/arianna_rodriguez/Documents/Audacity/dont smile vocals.wav"
+vocal_amp=[1, 1.3, 1.5, 1.7, 1.8, 1.9, 0.89, 0.79, 0.69, 0.5]
+v = 0
+
+s = 0
+f = 0.1
+
+miss_me = "C:/Users/arianna_rodriguez/Documents/Audacity/dont smile vocals2.wav"
 
 
 # FUNCTIONS
@@ -18,8 +24,9 @@ define :measures do
     play :b4
     sleep 0.5
   end
-  play :e5; play :b4, amp: 2
-  sleep 0.55
+  play :e5
+  play :b4, amp: 2
+  sleep 0.5
   play :b4
   sleep 0.5
   #Measure 2
@@ -54,35 +61,22 @@ define :measures do
     sleep 0.5
   end
   play :a4, amp: 0.5
-  sleep 0.4
+  sleep 0.5
 end
-
 define :vocals do
-  sample miss_me, start: 0, finish: 0.1, amp: 0.125
-  sleep 6.437263794406651/10
-  sample miss_me, start: 0.1, finish: 0.2, amp: 0.35
-  sleep 6.437263794406651/10
-  sample miss_me, start: 0.2, finish: 0.3, amp: 0.7
-  sleep 6.437263794406651/10
-  sample miss_me, start: 0.3, finish: 0.4, amp: 1.1
-  sleep 6.437263794406651/10
-  sample miss_me, start: 0.4, finish: 0.5, amp: 0.7
-  sleep 6.437263794406651/10
-  sample miss_me, start: 0.5, finish: 0.6, amp: 0.55
-  sleep 6.437263794406651/10
-  sample miss_me, start: 0.6, finish: 0.7, amp: 0.3
-  sleep 6.437263794406651/10
-  sample miss_me, start: 0.7, finish: 0.8, amp: 0.2
-  sleep 6.437263794406651/10
-  sample miss_me, start: 0.8, finish: 0.9, amp: 0.125
-  sleep 6.437263794406651/10
-  sample miss_me, start: 0.9, finish: 1, amp: 0.025
-  sleep 6.437263794406651/10
-  
+  10.times do
+    sample miss_me, start: s, finish: f, amp: (vocal_amp[v])
+    sleep 6.437263794406651/10
+    v = v + 1
+    s = s + 0.1
+    f = f + 0.1
+  end
+  s = 0
+  f = 0.1
+  v = 0
 end
 
 #--------------MUSIC STARTS HERE--------------#
-
 
 #Transition
 sample :loop_drone_g_97, amp: 0.75
@@ -93,7 +87,6 @@ sleep 1
 live_loop :second do
   3.times do
     measures
-    sleep 0.1
   end
   stop
 end
@@ -112,12 +105,13 @@ live_loop :drums do
 end
 sleep 21
 #Layer 4-vocal sample-miss_me-make louder
-
-3.times do
-  print ("vocals")
+2.times do
+  print "vocals"
   vocals
   sleep 3
 end
+print "vocals"
+vocals
 #Outro sample comes in to end song
 live_loop :outro do
   1.times do
