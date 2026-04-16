@@ -5,11 +5,14 @@ do_it = "C:/Users/arianna_rodriguez/Documents/Audacity/Sofia -Do it if we tried.
 
 in_love = "C:/Users/arianna_rodriguez/Documents/Audacity/Sofia - In love with you.wav"
 
+vol =[0.2, 0.6, 0.3]
+i = 0
+
 #FUNCTION
 
 define :layer_one_two_three_four do |first_note, second_note, first_amp, second_amp|
   8.times do
-    use_synth :blade
+    use_synth :piano
     play first_note, amp: first_amp
     play second_note, amp: second_amp
     sleep 0.75
@@ -18,15 +21,17 @@ end
 
 define :guitar do
   2.times do
-    sample :guit_em9, amp: 0.3
+    sample :guit_e_fifths, amp: (vol[i])
     sleep 8
   end
+  i = i + 1
   4.times do
-    sample :guit_em9, amp: 0.6
+    sample :guit_e_fifths, amp: (vol[i])
     sleep 8
   end
+  i = i + 1
   2.times do
-    sample :guit_em9, amp: 0.3
+    sample :guit_e_fifths, amp: (vol[i])
     sleep 8
   end
   stop
@@ -35,9 +40,11 @@ end
 
 
 #Music Coding Begins
+sample :ambi_glass_hum
+sleep 13
 live_loop :layer_one do
   3.times do
-    layer_one_two_three_four :f4, :c5, 0.5, 1
+    layer_one_two_three_four :f4, :c5, 0.3, 1
     layer_one_two_three_four :f4, :b4, 0.2, 1
     layer_one_two_three_four :e4, :g4, 0.2, 1
     layer_one_two_three_four :e4, :a4, 0.2, 0.75
