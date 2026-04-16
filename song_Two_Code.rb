@@ -5,13 +5,12 @@ a = 0
 
 vocal_amp=[1, 1.3, 1.5, 1.7, 1.8, 1.9, 0.89, 0.79, 0.69, 0.5]
 v = 0
-
 s = 0
 f = 0.1
 
 miss_me = "C:/Users/arianna_rodriguez/Documents/Audacity/dont smile vocals2.wav"
-
-
+oh_boy = "C:/Users/arianna_rodriguez/Documents/Audacity/manchildAudio.wav"
+funny_way = "C:/Users/arianna_rodriguez/Documents/Audacity/Funny_way.wav"
 # FUNCTIONS
 define :measures do
   use_synth :pretty_bell
@@ -79,9 +78,9 @@ end
 #--------------MUSIC STARTS HERE--------------#
 
 #Transition
-sample :loop_drone_g_97, amp: 0.75
-sleep 8
-sample :drum_cymbal_soft
+sample funny_way
+sleep 10
+sample :drum_cymbal_open, amp: 0.3
 sleep 1
 #Layer 2-main melody begins-Don't Smile beat
 live_loop :second do
@@ -113,10 +112,5 @@ end
 print "vocals"
 vocals
 #Outro sample comes in to end song
-live_loop :outro do
-  1.times do
-    sample :ambi_glass_hum, amp: 2
-    sleep 1
-  end
-  stop
-end
+measures
+sample oh_boy
