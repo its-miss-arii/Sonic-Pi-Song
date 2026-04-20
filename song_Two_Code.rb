@@ -11,6 +11,7 @@ f = 0.1
 miss_me = "C:/Users/arianna_rodriguez/Documents/Audacity/dont smile vocals2.wav"
 oh_boy = "C:/Users/arianna_rodriguez/Documents/Audacity/manchildAudio.wav"
 funny_way = "C:/Users/arianna_rodriguez/Documents/Audacity/Funny_way.wav"
+heart = "C:/Users/arianna_rodriguez/Documents/Audacity/heart.wav"
 # FUNCTIONS
 define :measures do
   use_synth :pretty_bell
@@ -78,6 +79,8 @@ end
 #--------------MUSIC STARTS HERE--------------#
 
 #Transition
+sample heart
+sleep 29.5
 sample funny_way
 sleep 10
 sample :drum_cymbal_open, amp: 0.3
@@ -105,12 +108,11 @@ end
 sleep 21
 #Layer 4-vocal sample-miss_me-make louder
 2.times do
-  print "vocals"
   vocals
   sleep 3
 end
-print "vocals"
 vocals
 #Outro sample comes in to end song
 measures
 sample oh_boy
+sleep 3
